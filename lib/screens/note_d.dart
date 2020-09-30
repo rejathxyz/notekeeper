@@ -38,7 +38,7 @@ class NoteDataState extends State<NoteData>{
         title: Text(appTitle, textScaleFactor: 1.25,),
         leading: IconButton( icon: Icon(Icons.arrow_back),
         onPressed: (){
-          //write some code to control yhings when user press back button
+
           moveToLastScreen();
         },)
 
