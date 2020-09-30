@@ -63,15 +63,15 @@ class NoteListState extends State<NoteList> {
                 style: textStyle,
               ),
               subtitle: Text(this.noteList[position].date),
-              trailing: GestureDetector(child: Icon(
+              trailing: IconButton(icon: Icon(
                 Icons.delete,
                 color: Colors.grey,
               ),
-              onTap: (){
+              onPressed: (){
                 _delete(context, noteList[position]);
               },),
               onTap: () {
-                debugPrint('Listtile tapped');
+                print('Listtile tapped');
                 navigateToData(this.noteList[position],'Edit Note');
                 }));
               },
