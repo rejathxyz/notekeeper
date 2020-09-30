@@ -45,13 +45,14 @@ class NoteListState extends State<NoteList> {
   }
 
   ListView getNoteListView() {
-    TextStyle textStyle = Theme.of(context).textTheme.subhead;
+    TextStyle textStyle = Theme.of(context).textTheme.headline3;
     return ListView.builder(
         itemCount: count,
         // ignore: missing_return
         itemBuilder: (BuildContext context, int position) {
           return Card(
             color: Colors.white,
+
             elevation: 2.0,
             child: ListTile(
               leading: CircleAvatar(
@@ -92,7 +93,7 @@ class NoteListState extends State<NoteList> {
   //return priority icon
   Icon getPriorityIcons(int priority){
     switch(priority){
-      case 1: return Icon(Icons.play_arrow); break;
+      case 1: return Icon(Icons.hourglass_empty); break;
       case 2: return Icon(Icons.keyboard_arrow_right); break;
       default: return Icon(Icons.keyboard_arrow_right);
     }
