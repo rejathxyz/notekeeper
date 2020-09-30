@@ -17,6 +17,7 @@ class NoteData extends StatefulWidget{
 class NoteDataState extends State<NoteData>{
   String appTitle;
   Note note;
+
   var _formkey= GlobalKey<FormState>();
   NoteDataState(this.note, this.appTitle);
   DatabaseHelper helper = DatabaseHelper();
@@ -198,7 +199,7 @@ class NoteDataState extends State<NoteData>{
     moveToLastScreen();
     //case 1 delete new note
     if(note.id == null){
-      _showAlertDialogue('Status', 'No note was Deleted');
+      _showAlertDialogue('Status', 'There is an error');
       return;
     }
     //case 2 delete exixting note
