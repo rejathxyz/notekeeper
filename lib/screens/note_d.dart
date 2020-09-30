@@ -17,7 +17,7 @@ class NoteData extends StatefulWidget{
 class NoteDataState extends State<NoteData>{
   String appTitle;
   Note note;
-
+  var pad=15.0;
   var _formkey= GlobalKey<FormState>();
   NoteDataState(this.note, this.appTitle);
   DatabaseHelper helper = DatabaseHelper();
@@ -69,7 +69,7 @@ class NoteDataState extends State<NoteData>{
             )),
             //second element
             Padding(
-              padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
+              padding: EdgeInsets.symmetric(vertical: pad),
               child: TextFormField(
                 controller: titleController,
                 validator: (String value){
@@ -91,14 +91,14 @@ class NoteDataState extends State<NoteData>{
                         fontSize: 15.0
                     ),
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(5.0),
+                    borderRadius: BorderRadius.circular(9.0),
                   )
                 ),
               ),
             ),
             //third element
             Padding(
-              padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
+              padding: EdgeInsets.symmetric(vertical: pad),
               child: TextFormField(
                 controller: descriptionController,
                 validator: (String value){
@@ -120,14 +120,14 @@ class NoteDataState extends State<NoteData>{
                         fontSize: 15.0
                     ),
                     border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(5.0),
+                      borderRadius: BorderRadius.circular(8.0),
                     )
                 ),
               ),
             ),
             //fourth element
             Padding(
-              padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
+              padding: EdgeInsets.symmetric(vertical: pad),
               child: Row(
                 children: <Widget>[
                   Expanded(

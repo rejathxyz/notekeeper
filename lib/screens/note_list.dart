@@ -50,10 +50,13 @@ class NoteListState extends State<NoteList> {
         itemCount: count,
         // ignore: missing_return
         itemBuilder: (BuildContext context, int position) {
-          return Card(
-            color: Colors.white,
-
-            elevation: 2.0,
+          return Container(
+          //  color: Colors.white,
+            decoration:BoxDecoration(
+              borderRadius: BorderRadius.circular(12.0),
+              color: Colors.white
+            ),
+           // elevation: 2.0,
             child: ListTile(
               leading: CircleAvatar(
                 backgroundColor: getPriorityColor(this.noteList[position].priority),
@@ -85,8 +88,8 @@ class NoteListState extends State<NoteList> {
   Color getPriorityColor(int priority){
     switch(priority){
       case 1: return Colors.red; break;
-      case 2: return Colors.yellow; break;
-      default: return Colors.yellow;
+      case 2: return Colors.lime; break;
+      default: return Colors.lime;
     }
   }
 
