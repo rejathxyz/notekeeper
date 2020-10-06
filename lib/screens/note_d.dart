@@ -17,6 +17,7 @@ class NoteData extends StatefulWidget{
 class NoteDataState extends State<NoteData>{
   String appTitle;
   Note note;
+  var pad=18.0;
   var _formkey= GlobalKey<FormState>();
   NoteDataState(this.note, this.appTitle);
   DatabaseHelper helper = DatabaseHelper();
@@ -38,7 +39,7 @@ class NoteDataState extends State<NoteData>{
         title: Text(appTitle, textScaleFactor: 1.25,),
         leading: IconButton( icon: Icon(Icons.arrow_back),
         onPressed: (){
-          //write some code to control yhings when user press back button
+
           moveToLastScreen();
         },)
 
@@ -49,6 +50,9 @@ class NoteDataState extends State<NoteData>{
         child: ListView(
           children: <Widget>[
             ListTile(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.)
+              ),
               title: DropdownButton(
                 items: _priorities.map((String dropDownStringItem){
                   return DropdownMenuItem<String>(
@@ -68,8 +72,9 @@ class NoteDataState extends State<NoteData>{
             )),
             //second element
             Padding(
-              padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
+              padding: EdgeInsets.symmetric(vertical: pad),
               child: TextFormField(
+
                 controller: titleController,
                 validator: (String value){
                   // ignore: missing_return
@@ -90,14 +95,14 @@ class NoteDataState extends State<NoteData>{
                         fontSize: 15.0
                     ),
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(5.0),
+                    borderRadius: BorderRadius.circular(9.0),
                   )
                 ),
               ),
             ),
             //third element
             Padding(
-              padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
+              padding: EdgeInsets.symmetric(vertical: pad),
               child: TextFormField(
                 controller: descriptionController,
                 validator: (String value){
@@ -119,14 +124,14 @@ class NoteDataState extends State<NoteData>{
                         fontSize: 15.0
                     ),
                     border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(5.0),
+                      borderRadius: BorderRadius.circular(8.0),
                     )
                 ),
               ),
             ),
             //fourth element
             Padding(
-              padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
+              padding: EdgeInsets.symmetric(vertical: pad),
               child: Row(
                 children: <Widget>[
                   Expanded(
@@ -142,7 +147,7 @@ class NoteDataState extends State<NoteData>{
                       },
                     ),
                   ),
-                  Container(width: 5.0,),
+                  SizedBox(width: 5.0,),
                   Expanded(
                     child: RaisedButton(
                       color: Theme.of(context).primaryColorDark,
@@ -198,7 +203,7 @@ class NoteDataState extends State<NoteData>{
     moveToLastScreen();
     //case 1 delete new note
     if(note.id == null){
-      _showAlertDialogue('Status', 'No note was Deleted');
+      _showAlertDialogue('Status', 'There is an error');
       return;
     }
     //case 2 delete exixting note
@@ -207,7 +212,7 @@ class NoteDataState extends State<NoteData>{
       _showAlertDialogue('Status','Note Deleted Successfullly');
     }
     else{//failure
-      _showAlertDialogue('Status','Error Occured While Deleting Note');
+      _showAlertDialogue('Status','Error Occured');
     }
   }
 

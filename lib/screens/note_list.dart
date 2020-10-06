@@ -45,35 +45,45 @@ class NoteListState extends State<NoteList> {
   }
 
   ListView getNoteListView() {
-    TextStyle textStyle = Theme.of(context).textTheme.subhead;
+    TextStyle textStyle = Theme.of(context).textTheme.headline3;
     return ListView.builder(
         itemCount: count,
         // ignore: missing_return
         itemBuilder: (BuildContext context, int position) {
           return Card(
-            color: Colors.white,
-            elevation: 2.0,
-            child: ListTile(
-              leading: CircleAvatar(
-                backgroundColor: getPriorityColor(this.noteList[position].priority),
-                child: getPriorityIcons(this.noteList[position].priority),
+            elevation: 6.0,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12.0)
+            ),
+            child: Container(
+            //  color: Colors.white,
+              decoration:BoxDecoration(
+                borderRadius: BorderRadius.circular(12.0),
+                color: Colors.white,
               ),
-              title: Text(
-                this.noteList[position].title,
-                style: textStyle,
-              ),
-              subtitle: Text(this.noteList[position].date),
-              trailing: GestureDetector(child: Icon(
-                Icons.delete,
-                color: Colors.grey,
-              ),
-              onTap: (){
-                _delete(context, noteList[position]);
-              },),
-              onTap: () {
-                debugPrint('Listtile tapped');
-                navigateToData(this.noteList[position],'Edit Note');
-                }));
+             // elevation: 2.0,
+              child: ListTile(
+                leading: CircleAvatar(
+                  backgroundColor: getPriorityColor(this.noteList[position].priority),
+                  child: getPriorityIcons(this.noteList[position].priority),
+                ),
+                title: Text(
+                  this.noteList[position].title,
+                  style: textStyle,
+                ),
+                subtitle: Text(this.noteList[position].date),
+                trailing: IconButton(icon: Icon(
+                  Icons.delete,
+                  color: Colors.grey,
+                ),
+                onPressed: (){
+                  _delete(context, noteList[position]);
+                },),
+                onTap: () {
+                  print('Listtile tapped');
+                  navigateToData(this.noteList[position],'Edit Note');
+                  })),
+          );
               },
             );
 
@@ -84,15 +94,15 @@ class NoteListState extends State<NoteList> {
   Color getPriorityColor(int priority){
     switch(priority){
       case 1: return Colors.red; break;
-      case 2: return Colors.yellow; break;
-      default: return Colors.yellow;
+      case 2: return Colors.lime; break;
+      default: return Colors.lime;
     }
   }
 
   //return priority icon
   Icon getPriorityIcons(int priority){
     switch(priority){
-      case 1: return Icon(Icons.play_arrow); break;
+      case 1: return Icon(Icons.hourglass_empty); break;
       case 2: return Icon(Icons.keyboard_arrow_right); break;
       default: return Icon(Icons.keyboard_arrow_right);
     }
