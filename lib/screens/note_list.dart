@@ -1,6 +1,7 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:notekeeper/screens/drawer.dart';
 import 'package:notekeeper/screens/note_d.dart';
 import 'dart:async';
 import 'package:notekeeper/models/node.dart';
@@ -27,7 +28,7 @@ class NoteListState extends State<NoteList> {
       updateListView();
     }
     return Scaffold(
-      drawer: Drawer(child: Container(),),
+      drawer: Drawer(child: DrawerScree(),),
       backgroundColor: Colors.lightBlueAccent[100],
         appBar: AppBar(
           leading: Icon(Icons.note_add_outlined,color: Colors.indigo,),
