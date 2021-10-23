@@ -37,6 +37,7 @@ class NoteDataState extends State<NoteData>{
         moveToLastScreen();
       },
       child: Scaffold(
+        backgroundColor: Colors.lightBlueAccent[100],
       appBar: AppBar(
         title: Text(appTitle,style: TextStyle(color: Colors.purple), textScaleFactor: 1.25,),
         leading: IconButton( icon: Icon(Icons.keyboard_arrow_left),
@@ -87,7 +88,7 @@ class NoteDataState extends State<NoteData>{
                 },
                 style: textStyle,
                 onChanged: (value){
-                  debugPrint("someting changed in the title textfield");
+                
                   updateTitle();
                 },
                 decoration: InputDecoration(

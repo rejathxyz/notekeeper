@@ -27,7 +27,11 @@ class NoteListState extends State<NoteList> {
       updateListView();
     }
     return Scaffold(
+      drawer: Drawer(child: Container(),),
+      backgroundColor: Colors.lightBlueAccent[100],
         appBar: AppBar(
+          leading: Icon(Icons.note_add_outlined,color: Colors.indigo,),
+          
             title: Center(
               child: Text(
           'Notes',
@@ -36,7 +40,7 @@ class NoteListState extends State<NoteList> {
         body: getNoteListView(),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            debugPrint('Fab pressed');
+            debugPrint('button pressed');
             navigateToData(Note('','',2),'Add Note');
           },
           tooltip: 'Add Note',
@@ -51,12 +55,12 @@ class NoteListState extends State<NoteList> {
         // ignore: missing_return
         itemBuilder: (BuildContext context, int position) {
           return Card(
-            elevation: 6.0,
+            elevation: 10.0,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12.0)
+              borderRadius: BorderRadius.circular(110.0)
             ),
             child: Container(
-            //  color: Colors.white,
+            
               decoration:BoxDecoration(
                 borderRadius: BorderRadius.circular(12.0),
                 color: Colors.white,
