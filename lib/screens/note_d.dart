@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
+
 import 'package:intl/intl.dart';
 import 'package:notekeeper/models/node.dart';
 import 'package:notekeeper/utils/database_helper.dart';
@@ -207,7 +207,7 @@ class NoteDataState extends State<NoteData>{
     moveToLastScreen();
     //case 1 delete new note
     if(note.id == null){
-      _showAlertDialogue('Status', 'There is an error');
+      _showAlertDialogue('Status', 'Note cannot be deleted');
       return;
     }
     //case 2 delete exixting note
@@ -242,7 +242,9 @@ class NoteDataState extends State<NoteData>{
   void _showAlertDialogue(String title, String msg){
     AlertDialog alertDialog= AlertDialog(
       title: Text(title),
-      content: Text(msg),
+      backgroundColor: Colors.lightBlueAccent,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      content: Text(msg,style: TextStyle(color: Colors.red[900]),),
     );
     showDialog(context: context, builder: (_)=>alertDialog);
   }
