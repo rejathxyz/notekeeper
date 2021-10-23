@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:notekeeper/models/node.dart';
 import 'package:notekeeper/utils/database_helper.dart';
 
+// ignore: must_be_immutable
 class NoteData extends StatefulWidget{
   String appTitle;
   final Note note;
@@ -30,6 +31,7 @@ class NoteDataState extends State<NoteData>{
     titleController.text=note.title;
     descriptionController.text=note.description;
     return WillPopScope(
+      // ignore: missing_return
       onWillPop: (){
         //write some code to control yhings when user press back button
         moveToLastScreen();
@@ -76,6 +78,7 @@ class NoteDataState extends State<NoteData>{
               child: TextFormField(
 
                 controller: titleController,
+                // ignore: missing_return
                 validator: (String value){
                   // ignore: missing_return
                   if (value.isEmpty){
@@ -105,6 +108,7 @@ class NoteDataState extends State<NoteData>{
               padding: EdgeInsets.symmetric(vertical: pad),
               child: TextFormField(
                 controller: descriptionController,
+                // ignore: missing_return
                 validator: (String value){
                   // ignore: missing_return
                   if (value.isEmpty){

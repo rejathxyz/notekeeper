@@ -23,7 +23,7 @@ class NoteListState extends State<NoteList> {
   @override
   Widget build(BuildContext context) {
     if(noteList==null){
-      noteList=List<Note>();
+      noteList=<Note>[];
       updateListView();
     }
     return Scaffold(
@@ -119,6 +119,7 @@ class NoteListState extends State<NoteList> {
 
   void _showSnackBar(BuildContext context, String msg){
     final snackBar=SnackBar(content: Text(msg));
+    // ignore: deprecated_member_use
     Scaffold.of(context).showSnackBar(snackBar);
 
   }
