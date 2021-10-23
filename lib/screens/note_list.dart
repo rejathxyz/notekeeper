@@ -23,7 +23,7 @@ class NoteListState extends State<NoteList> {
   @override
   Widget build(BuildContext context) {
     if(noteList==null){
-      noteList=List<Note>();
+      noteList=<Note>[];
       updateListView();
     }
     return Scaffold(
@@ -50,34 +50,40 @@ class NoteListState extends State<NoteList> {
         itemCount: count,
         // ignore: missing_return
         itemBuilder: (BuildContext context, int position) {
-          return Container(
-          //  color: Colors.white,
-            decoration:BoxDecoration(
-              borderRadius: BorderRadius.circular(12.0),
-              color: Colors.white
+          return Card(
+            elevation: 6.0,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12.0)
             ),
-           // elevation: 2.0,
-            child: ListTile(
-              leading: CircleAvatar(
-                backgroundColor: getPriorityColor(this.noteList[position].priority),
-                child: getPriorityIcons(this.noteList[position].priority),
+            child: Container(
+            //  color: Colors.white,
+              decoration:BoxDecoration(
+                borderRadius: BorderRadius.circular(12.0),
+                color: Colors.white,
               ),
-              title: Text(
-                this.noteList[position].title,
-                style: textStyle,
-              ),
-              subtitle: Text(this.noteList[position].date),
-              trailing: IconButton(icon: Icon(
-                Icons.delete,
-                color: Colors.grey,
-              ),
-              onPressed: (){
-                _delete(context, noteList[position]);
-              },),
-              onTap: () {
-                print('Listtile tapped');
-                navigateToData(this.noteList[position],'Edit Note');
-                }));
+             // elevation: 2.0,
+              child: ListTile(
+                leading: CircleAvatar(
+                  backgroundColor: getPriorityColor(this.noteList[position].priority),
+                  child: getPriorityIcons(this.noteList[position].priority),
+                ),
+                title: Text(
+                  this.noteList[position].title,
+                  style: textStyle,
+                ),
+                subtitle: Text(this.noteList[position].date),
+                trailing: IconButton(icon: Icon(
+                  Icons.delete,
+                  color: Colors.grey,
+                ),
+                onPressed: (){
+                  _delete(context, noteList[position]);
+                },),
+                onTap: () {
+                  print('Listtile tapped');
+                  navigateToData(this.noteList[position],'Edit Note');
+                  })),
+          );
               },
             );
 
@@ -113,6 +119,7 @@ class NoteListState extends State<NoteList> {
 
   void _showSnackBar(BuildContext context, String msg){
     final snackBar=SnackBar(content: Text(msg));
+    // ignore: deprecated_member_use
     Scaffold.of(context).showSnackBar(snackBar);
 
   }

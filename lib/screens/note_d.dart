@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:notekeeper/models/node.dart';
 import 'package:notekeeper/utils/database_helper.dart';
 
+// ignore: must_be_immutable
 class NoteData extends StatefulWidget{
   String appTitle;
   final Note note;
@@ -17,7 +18,7 @@ class NoteData extends StatefulWidget{
 class NoteDataState extends State<NoteData>{
   String appTitle;
   Note note;
-  var pad=15.0;
+  var pad=18.0;
   var _formkey= GlobalKey<FormState>();
   NoteDataState(this.note, this.appTitle);
   DatabaseHelper helper = DatabaseHelper();
@@ -30,6 +31,7 @@ class NoteDataState extends State<NoteData>{
     titleController.text=note.title;
     descriptionController.text=note.description;
     return WillPopScope(
+      // ignore: missing_return
       onWillPop: (){
         //write some code to control yhings when user press back button
         moveToLastScreen();
@@ -50,6 +52,9 @@ class NoteDataState extends State<NoteData>{
         child: ListView(
           children: <Widget>[
             ListTile(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.)
+              ),
               title: DropdownButton(
                 items: _priorities.map((String dropDownStringItem){
                   return DropdownMenuItem<String>(
@@ -71,7 +76,9 @@ class NoteDataState extends State<NoteData>{
             Padding(
               padding: EdgeInsets.symmetric(vertical: pad),
               child: TextFormField(
+
                 controller: titleController,
+                // ignore: missing_return
                 validator: (String value){
                   // ignore: missing_return
                   if (value.isEmpty){
@@ -101,6 +108,7 @@ class NoteDataState extends State<NoteData>{
               padding: EdgeInsets.symmetric(vertical: pad),
               child: TextFormField(
                 controller: descriptionController,
+                // ignore: missing_return
                 validator: (String value){
                   // ignore: missing_return
                   if (value.isEmpty){
@@ -143,7 +151,7 @@ class NoteDataState extends State<NoteData>{
                       },
                     ),
                   ),
-                  Container(width: 5.0,),
+                  SizedBox(width: 5.0,),
                   Expanded(
                     child: RaisedButton(
                       color: Theme.of(context).primaryColorDark,
@@ -208,7 +216,7 @@ class NoteDataState extends State<NoteData>{
       _showAlertDialogue('Status','Note Deleted Successfullly');
     }
     else{//failure
-      _showAlertDialogue('Status','Error Occured While Deleting Note');
+      _showAlertDialogue('Status','Error Occured');
     }
   }
 
