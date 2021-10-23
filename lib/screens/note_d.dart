@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
+
 import 'package:intl/intl.dart';
 import 'package:notekeeper/models/node.dart';
 import 'package:notekeeper/utils/database_helper.dart';
@@ -27,7 +27,7 @@ class NoteDataState extends State<NoteData>{
   TextEditingController descriptionController= TextEditingController();
   @override
   Widget build(BuildContext context) {
-    TextStyle textStyle=Theme.of(context).textTheme.title;
+    TextStyle textStyle=Theme.of(context).textTheme.headline6;
     titleController.text=note.title;
     descriptionController.text=note.description;
     return WillPopScope(
@@ -38,8 +38,8 @@ class NoteDataState extends State<NoteData>{
       },
       child: Scaffold(
       appBar: AppBar(
-        title: Text(appTitle, textScaleFactor: 1.25,),
-        leading: IconButton( icon: Icon(Icons.arrow_back),
+        title: Text(appTitle,style: TextStyle(color: Colors.purple), textScaleFactor: 1.25,),
+        leading: IconButton( icon: Icon(Icons.keyboard_arrow_left),
         onPressed: (){
 
           moveToLastScreen();
@@ -53,7 +53,7 @@ class NoteDataState extends State<NoteData>{
           children: <Widget>[
             ListTile(
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.)
+                borderRadius: BorderRadius.circular(10)
               ),
               title: DropdownButton(
                 items: _priorities.map((String dropDownStringItem){
@@ -112,12 +112,12 @@ class NoteDataState extends State<NoteData>{
                 validator: (String value){
                   // ignore: missing_return
                   if (value.isEmpty){
-                    return 'Please enter Descriptiom';
+                    return 'Please enter Description';
                   }
                 },
                 style: textStyle,
                 onChanged: (value){
-                  debugPrint("someting changed in the description textfield");
+                  
                   updateDescripton();
                 },
                 decoration: InputDecoration(
@@ -207,7 +207,7 @@ class NoteDataState extends State<NoteData>{
     moveToLastScreen();
     //case 1 delete new note
     if(note.id == null){
-      _showAlertDialogue('Status', 'There is an error');
+      _showAlertDialogue('Status', 'Note cannot be deleted');
       return;
     }
     //case 2 delete exixting note
@@ -242,7 +242,9 @@ class NoteDataState extends State<NoteData>{
   void _showAlertDialogue(String title, String msg){
     AlertDialog alertDialog= AlertDialog(
       title: Text(title),
-      content: Text(msg),
+      backgroundColor: Colors.lightBlueAccent,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      content: Text(msg,style: TextStyle(color: Colors.red[900]),),
     );
     showDialog(context: context, builder: (_)=>alertDialog);
   }
